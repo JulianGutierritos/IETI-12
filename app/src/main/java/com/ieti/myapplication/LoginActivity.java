@@ -77,7 +77,14 @@ public class LoginActivity extends AppCompatActivity {
                             });
                         }
                         else{
-                            email.setError("Email incorrecto");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    email.setError("Incorrecto");
+                                    Snackbar.make(view, "Credenciales incorrectas", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                }
+                            });
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
